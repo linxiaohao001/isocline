@@ -62,7 +62,10 @@ ic_private bool ic_strcpy( char* dest, ssize_t dest_size /* including 0 */, cons
 ic_private bool ic_strncpy( char* dest, ssize_t dest_size /* including 0 */, const char* src, ssize_t n) {
   assert(dest!=NULL && n < dest_size);
   if (dest == NULL || dest_size <= 0) return false;
-  if (n >= dest_size) return false;
+  if (n >= dest_size) {
+    dest[0] = 0;
+    return false;
+  }
   if (src==NULL || n <= 0) {
     dest[0] = 0;
   }
